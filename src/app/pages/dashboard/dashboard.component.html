@@ -56,171 +56,22 @@
                 <label class="custom-control-label" for="forDontShow">Don't Show again</label>
               </div>
             </div>
-            <button (click)="close(dontShow.checked)" class="btn btn-blue waves-effect waves-light mb-4"><i class="fas fa-times-circle mr-1"></i><span> Close</span></button>
+            <button (click)="close(dontShow.checked)" class="btn btn-blue waves-effect waves-light mb-4"><i
+                class="fas fa-times-circle mr-1"></i><span> Close</span></button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xl-3 col-md-6 col-6">
-      <div class="card-box">
-        <h4 class="header-title m-0 text-md-left text-center">Infections</h4>
 
-        <div class="topBoxes">
-          <div class="fa-3x text-center" [class.d-none]="!isLoading">
-            <i class="fas fa-circle-notch fa-spin m-2"></i>
-          </div>
-          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
-
-            <span class="badge badge-blue badge-pill float-md-left m-md-3 mt-2"><i class="mdi mdi-trending-up"></i>
-            </span>
-            <h2 class="font-weight-normal"> {{totalCases | number}} </h2>
-            <p class="text-muted">{{todayCases}} today</p>
-          </div>
-          <div class="progress progress-bar-alt-blue progress-sm m-0">
-            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end col -->
-
-    <div class="col-xl-3 col-md-6 col-6">
-      <div class="card-box">
-        <h4 class="header-title m-0 text-md-left text-center">Deaths</h4>
-
-        <div class="topBoxes">
-          <div class="fa-3x text-center" [class.d-none]="!isLoading">
-            <i class="fas fa-circle-notch fa-spin m-2"></i>
-          </div>
-          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
-            <span
-              class="badge badge-danger badge-pill float-md-left m-md-3 mt-2">{{(totalDeaths / finishedCases * 100) | number:'.1-2'}}%
-              <i class="mdi mdi-trending-up"></i> </span>
-            <h2 class="font-weight-normal"> {{totalDeaths | number}} </h2>
-            <p class="text-muted">{{todayDeaths}} today</p>
-          </div>
-          <div class="progress progress-bar-alt-danger progress-sm m-0">
-            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end col -->
-
-    <div class="col-xl-3 col-md-6 col-6">
-      <div class="card-box">
-        <h4 class="header-title m-0 text-md-left text-center">Recoveries</h4>
-
-        <div class="topBoxes">
-          <div class="fa-3x text-center" [class.d-none]="!isLoading">
-            <i class="fas fa-circle-notch fa-spin m-2"></i>
-          </div>
-          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
-            <span
-              class="badge badge-success badge-pill float-md-left m-md-3 mt-2">{{(totalRecoveries / finishedCases * 100) | number:'.1-2'}}%
-              <i class="mdi mdi-trending-up"></i> </span>
-            <h2 class="font-weight-normal"> {{totalRecoveries | number}} </h2>
-            <p class="text-muted">{{activeCases | number}} remaining</p>
-          </div>
-          <div class="progress progress-bar-alt-success progress-sm m-0">
-            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end col -->
-
-
-    <div class="col-xl-3 col-md-6 col-6">
-      <div class="card-box">
-        <h4 class="header-title m-0 text-md-left text-center">Critical</h4>
-
-        <div class="topBoxes">
-          <div class="fa-3x text-center" [class.d-none]="!isLoading">
-            <i class="fas fa-circle-notch fa-spin m-2"></i>
-          </div>
-          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
-            <span
-              class="badge badge-warning badge-pill float-md-left m-md-3 mt-2">{{(totalCritical / activeCases * 100) | number:'.1-2'}}%
-              <i class="mdi mdi-trending-up"></i> </span>
-            <h2 class="font-weight-normal"> {{totalCritical | number}} </h2>
-            <p class="text-muted">{{casesPer1M | number}} per million</p>
-          </div>
-          <div class="progress progress-bar-alt-warning progress-sm m-0">
-            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end col -->
-
+  <div class="col-xl-4" style="margin:0 auto; width:80%">
+    <div class=" card-box text-center">
+      <h5>Outbreak Started</h5>
+      <app-countup></app-countup>
+    </div>
   </div>
-
-
   <div class="row">
-    <div class="col-xl-4">
-      <div class="card-box">
-        <div class="float-right">
-          <p>Today's Statistics</p>
-        </div>
-
-        <h4 class="header-title mb-3">Affected Countries </h4>
-        <div class="form-group row">
-          <div class="col-md-8 col-8">
-            <input type="text" id="example-placeholder" #search (keyup)="searchCountries(search.value)"
-              class="form-control" placeholder="Search {{countries.length}} Affected Countries">
-          </div>
-          <div class="col-md-4 col-4">
-            <select class="custom-select" #sortBy (change)="sortCountries(sortBy.value,search.value)">
-              <option selected="" disabled>Sort By</option>
-              <option value="cases">Total Cases</option>
-              <option value="todayCases">Today Cases</option>
-              <option value="deaths">Total Deaths</option>
-              <option value="todayDeaths">Today Deaths</option>
-              <option value="recovered">Total Recoveries</option>
-            </select>
-          </div>
-        </div>
-        <div class="fa-3x text-center" [class.d-none]="!isLoadingCountries">
-          <i class="fas fa-circle-notch fa-spin m-2"></i>
-        </div>
-        <div class="infectedCountries" [class.d-none]="isLoadingCountries">
-          <perfect-scrollbar #perfectscrollbar style="height:346px;">
-            <div class="infectedCountry" *ngFor="let country of countries">
-              <a [routerLink]="[ '/country', country.country.toLowerCase() ]">
-                <div class="infectedCountryFlag">
-                  <img *ngIf="countryCodes[country.country] else unknown" style="height: 30px;
-                width: 40px;" src="assets/flags/{{countryCodes[country.country].toLowerCase()}}.svg"
-                    alt="{{country.country}}">
-                  <ng-template #unknown>
-                    <img src="assets/flags/unknown.svg" alt="{{country.country}}">
-                  </ng-template>
-                </div>
-                <h5 class="infectedCountryName mt-0 mb-1">{{country.country}}</h5>
-                <p class="infectedCountryDetails font-weight-bold"><span class="text-blue">{{country.cases}}
-                    Cases</span> & <span class="text-danger">{{country.deaths}} Deaths</span></p>
-                <p class="infectedCountryCases text-blue">+{{country.todayCases}} Cases</p>
-                <p class="infectedCountryDeaths text-danger">+{{country.todayDeaths}} Deaths</p>
-              </a>
-            </div>
-          </perfect-scrollbar>
-
-
-        </div>
-      </div>
-    </div><!-- end col -->
-
-    <div class="col-xl-8">
+    <div class="col-xl-12">
       <div class="card-box">
         <div class="float-md-right float-right d-md-inline d-none">
           <button type="button" class="btn btn-xs btn-lighten-blue waves-effect waves-light width-xs mr-md-1 mr-0"
@@ -232,8 +83,9 @@
           <button type="button" class="btn btn-xs btn-lighten-warning waves-effect waves-light width-xs"
             (click)="loadMap('critical')">Critical</button>
         </div>
-        <h4 class="header-title mt-0 mb-3 mt-md-0">Worldwide Infections <button type="button" class="btn btn-xs btn-lighten-secondary waves-effect waves-light width-xs mr-md-1 mr-0"
-          (click)="showModal();">How to prevent?</button></h4>
+        <h4 class="header-title mt-0 mb-3 mt-md-0">Worldwide Infections <button type="button"
+            class="btn btn-xs btn-lighten-secondary waves-effect waves-light width-xs mr-md-1 mr-0"
+            (click)="showModal();">How to prevent?</button></h4>
         <div class="fa-3x text-center" [class.d-none]="!false">
           <i class="fas fa-circle-notch fa-spin m-2"></i>
         </div>
@@ -258,6 +110,211 @@
       </div>
     </div><!-- end col -->
 
+
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-xl-3 col-md-6 col-6">
+      <div class="card-box">
+        <h4 class="header-title m-0 text-md-left text-center">Social Distancig Measures</h4>
+
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
+            <div style="margin:12%">
+              <app-social-distancing-slider></app-social-distancing-slider>
+            </div>
+          </div>
+          <div class="progress progress-bar-alt-blue progress-sm m-0">
+            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end col -->
+
+    <div class="col-xl-3 col-md-6 col-6">
+      <div class="card-box">
+        <h4 class="header-title m-0 text-md-left text-center">Handwashing per day</h4>
+
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div style="margin:12%">
+
+            <app-handwashing-slider></app-handwashing-slider>
+          </div>
+          <div class="progress progress-bar-alt-danger progress-sm m-0">
+            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end col -->
+
+    <div class="col-xl-3 col-md-6 col-6">
+      <div class="card-box">
+        <h4 class="header-title m-0 text-md-left text-center">Wearing masks</h4>
+
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div style="margin:13%; margin-left:30%">
+            <app-wear-masks-radiobutton></app-wear-masks-radiobutton>
+          </div>
+          <div class="progress progress-bar-alt-danger progress-sm m-0">
+            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end col -->
+
+
+    <div class="col-xl-3 col-md-6 col-6">
+      <div class="card-box">
+        <h4 class="header-title m-0 text-md-left text-center">Air Pollution</h4>
+
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div style="margin:13%; margin-left:30%">
+            <app-air-pollution-radiobutton></app-air-pollution-radiobutton>
+          </div>
+          <div class="progress progress-bar-alt-danger progress-sm m-0">
+            <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end col -->
+    <!-- <div class="col-xl-3 col-md-6 col-6">
+      <div class="card-box">
+        <h4 class="header-title m-0 text-md-left text-center">Choose by date</h4>
+
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
+            <div style="margin:12%">
+              <app-date-slider></app-date-slider>
+            </div>
+          </div>
+          <div class="progress progress-bar-alt-blue progress-sm m-0">
+            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>end col -->
+
+    <div class="col-xl-3 col-md-6 col-6">
+      <div class="card-box">
+        <h4 class="header-title m-0 text-md-left text-center">Population percentage over 65 years old</h4>
+
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
+            <div style="margin:12%">
+              <app-population-over65-slider></app-population-over65-slider>
+            </div>
+          </div>
+          <div class="progress progress-bar-alt-blue progress-sm m-0">
+            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end col -->
+    <div class="col-xl-3 col-md-6 col-6">
+      <div class="card-box">
+        <h4 class="header-title m-0 text-md-left text-center">Population percentage that smokes</h4>
+
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
+            <div style="margin:12%">
+              <app-population-smoking-slider></app-population-smoking-slider>
+            </div>
+          </div>
+          <div class="progress progress-bar-alt-blue progress-sm m-0">
+            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end col -->
+    <div class="col-xl-3 col-md-6 col-6">
+      <div class="card-box">
+        <h4 class="header-title m-0 text-md-left text-center">Population percentage that is obese</h4>
+
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
+            <div style="margin:12%">
+              <app-population-obese-slider></app-population-obese-slider>
+            </div>
+          </div>
+          <div class="progress progress-bar-alt-blue progress-sm m-0">
+            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end col -->
+    <div class="col-xl-3 col-md-6 col-6">
+      <div class="card-box">
+        <h4 class="header-title m-0 text-md-left text-center">Number of hospital beds per 10.000 people</h4>
+
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
+            <div style="margin:12%">
+              <app-hospital-beds-slider></app-hospital-beds-slider>
+            </div>
+          </div>
+          <div class="progress progress-bar-alt-blue progress-sm m-0">
+            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end col -->
+
   </div>
   <div class="row">
     <div class="col-xl-4">
@@ -278,8 +335,8 @@
       <div class="card-box">
         <div class="float-md-right float-right d-md-inline d-none">
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="enableLogarithmicScale" #enableLogarithmicScale (change)="loadLineChart(enableLogarithmicScale.checked)"
-            >
+            <input type="checkbox" class="custom-control-input" id="enableLogarithmicScale" #enableLogarithmicScale
+              (change)="loadLineChart(enableLogarithmicScale.checked)">
             <label class="custom-control-label" for="enableLogarithmicScale">Enable Logarithmic Scale</label>
           </div>
         </div>
@@ -293,11 +350,12 @@
       </div>
     </div><!-- end col -->
 
+
   </div>
 
 
   <div class="row">
-    <div class="col-xl-4">
+    <!-- <div class="col-xl-4">
       <div class="card-box">
         <h4 class="header-title mb-3">Infection Distribution By Countries</h4>
         <div class="fa-3x text-center" [class.d-none]="!isLoading">
@@ -309,7 +367,7 @@
 
         </div>
       </div>
-    </div><!-- end col -->
+    </div>end col -->
 
     <div class="col-xl-5">
       <div class="card-box">
@@ -375,11 +433,8 @@
       </div>
     </div><!-- end col -->
     <div class="col-xl-3">
-      <div class="card-box text-center">
-        <h5>Outbreak Started</h5>
-        <app-countup></app-countup>
-      </div>
-      <div class="card-box text-center">
+
+      <!-- <div class="card-box text-center">
 
         <h5>Share with your friends, family or coworkers.</h5>
         <p>Keep them up to date with the coronavirus outbreak.</p>
@@ -397,8 +452,8 @@
         <a href="https://ko-fi.com/ossamarafique" class="btn btn- waves-effect btn-danger d-block mt-1 mx-auto"> <i
             class="fas fa-coffee"></i> Buy me a coffee </a>
       </div>
-    </div><!-- end col -->
+    </div>end col -->
 
-  </div>
+    </div>
 
-</div> <!-- end container -->
+  </div> <!-- end container -->
