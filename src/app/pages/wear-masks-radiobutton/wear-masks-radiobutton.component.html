@@ -1,6 +1,11 @@
-<div class="btn-group">
-    <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Left" tabindex="0" role="button">N95</label>
+<div class="btn-group" style="margin:13%; margin-left:30%">
+    <label class="btn btn-primary" [(ngModel)]="isClicked" (click)="toggleShow()" btnRadio="Left" tabindex="0"
+        role="button">N95</label>
 
     <label class="btn btn-secondary" [(ngModel)]="radioModel" btnRadio="Right" tabindex="0"
         role="button">Surgical</label>
+
+</div>
+<div *ngIf="isShown" style="margin-bottom:10%">
+    <app-handwashing-slider></app-handwashing-slider>
 </div>
