@@ -1,11 +1,13 @@
-import { Component,NgZone ,OnInit } from '@angular/core';
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
-import * as   am4maps from "@amcharts/amcharts4/maps";
-import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-import { DataService } from "./data.service";
-am4core.useTheme(am4themes_animated);
+import { Component,NgZone ,OnInit, ViewChild, ElementRef  } from '@angular/core';
+import * as L from 'leaflet';
+import HeatmapOverlay from 'leaflet-heatmap';
+// import * as am4core from "@amcharts/amcharts4/core";
+// import * as am4charts from "@amcharts/amcharts4/charts";
+// import * as   am4maps from "@amcharts/amcharts4/maps";
+// import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
+// import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+// import { DataService } from "./data.service";
+// am4core.useTheme(am4themes_animated);
 
 @Component({
   selector: 'app-map',
@@ -13,10 +15,59 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  @ViewChild('map') map: ElementRef;
+  // private chart: am4charts.XYChart;
+  // constructor(private zone: NgZone, private dataService: DataService) {}
+  constructor(){
 
-  private chart: am4charts.XYChart;
-  constructor(private zone: NgZone, private dataService: DataService) {}
-    ngOnInit(): void {
+  }
+  ngOnInit() {    
+  }
+  public data = [];
+  private initMap(): void {
+    this.map = L.map('map', {
+      center: [ 65 ,19 ],
+      zoom: 4,
+      zoomControl:false
+    });
+    this.map['scrollWheelZoom'].disable();
+    // const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //   maxZoom: 19,
+    //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    // });
+    var cfg = {
+      // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+      // if scaleRadius is false it will be the constant radius used in pixels
+      "radius": 2,
+      "maxOpacity": .8,
+      // scales the radius based on map zoom
+      "scaleRadius": true,
+      // if set to false the heatmap uses the global maximum for colorization
+      // if activated: uses the data maximum within the current map boundaries
+      //   (there will always be a red spot with useLocalExtremas true)
+      "useLocalExtrema": true,
+      // which field name in your data represents the latitude - default "lat"
+      latField: 'lat',
+      // which field name in your data represents the longitude - default "lng"
+      lngField: 'lng',
+      // which field name in your data represents the data value - default "value"
+      valueField: 'count'
+    };
+    var heatmapLayer = new HeatmapOverlay(cfg);
+    var testData = {
+      max: 8,
+      data: [{lat: 24.6408, lng:46.7728, count: 3},{lat: 50.75, lng:-1.55, count: 1}]
+    };
+
+    var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+    });
+    Stadia_AlidadeSmoothDark.addTo(this.map);
+  }
+
+  ngAfterViewInit(): void {
+    this.initMap();
   }
 
 
@@ -1076,6 +1127,7 @@ export class MapComponent implements OnInit {
   //     this.chart = chart;
   //   });
   // }
+
   // ngOnDestroy() {
   //   this.zone.runOutsideAngular(() => {
   //     if (this.chart) {

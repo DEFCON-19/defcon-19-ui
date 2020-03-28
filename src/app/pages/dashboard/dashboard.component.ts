@@ -595,7 +595,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     circle.tooltipText = "{name}: [bold]{value}[/]";
 
     chartMap.events.on("ready",()=>{
-      this.isLoadingMap = false;
+      // this.isLoadingMap = false;
     })
 
     imageSeries.heatRules.push({
