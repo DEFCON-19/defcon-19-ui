@@ -1,8 +1,12 @@
 <!-- <div id="chartdiv" style="width: 100%; height: 500px"></div> -->
 
 
-<div class="map-container">
-    <div class="map-frame">
-      <div #map id="map"></div>
-    </div>
+<div >
+  <div [style.height.px]="mapHeight" 
+       leaflet
+       (leafletClick)="mapOnClick($event)"
+       [(leafletCenter)]="mapCenter"
+       [leafletOptions]="options"
+       (leafletMapReady)="onMapReady($event)">
   </div>
+</div>

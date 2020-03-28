@@ -1,7 +1,7 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -36,6 +36,9 @@ import { FormsModule } from "@angular/forms";
 import { PopulationSmokingSliderComponent } from './pages/population-smoking-slider/population-smoking-slider.component';
 import { PopulationObeseSliderComponent } from './pages/population-obese-slider/population-obese-slider.component';
 import { HospitalBedsSliderComponent } from './pages/hospital-beds-slider/hospital-beds-slider.component';
+
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
 @NgModule({
@@ -61,6 +64,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     HospitalBedsSliderComponent
   ],
   imports: [
+    LeafletModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
