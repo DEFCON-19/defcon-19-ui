@@ -1,27 +1,112 @@
-# Defcon19
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.
+<h1 align="center">Welcome to Corona Statistics Dashboard Angular 9 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+    <img alt="Version" src="https://img.shields.io/badge/build-passing-brightgreen" />
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://discord.gg/QFmHc9" target="_blank">
+    <img alt="Discord Server" src="https://user-images.githubusercontent.com/7288322/34472039-a19b9ed4-efbc-11e7-8946-c1ff405ae2a6.png" />
+  </a>
+  <a href="https://ko-fi.com/ossamarafique" target="_blank">
+    <img alt="Buy Me A Coffee" src="https://www.ko-fi.com/img/githubbutton_sm.svg" />
+  </a>
+  <a href="https://twitter.com/OssamaRafique" target="_blank">
+    <img alt="Twitter: OssamaRafique" src="https://img.shields.io/twitter/follow/OssamaRafique.svg?style=social" />
+  </a>
+</p>
+<img alt="Covid Stats Live Dashboard" src="https://coronastatistics.live/assets/images/preview.png" />
 
-## Development server
+### 🏠 [Homepage](https://github.com/OssamaRafique/Corona-Statistics-And-Tracker-Dashboard-Angular-9)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### ✨ [Demo](https://coronastatistics.live)
 
-## Code scaffolding
+### ✨ [Join Discord Server For Help](https://discord.gg/QFmHc9)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Screenshots
 
-## Build
+<img alt="Covid Stats Live Dashboard Screenshot 1" src="https://coronastatistics.live/screenshots/sc1.png" />
+<img alt="Covid Stats Live Dashboard Screenshot 2" src="https://coronastatistics.live/screenshots/sc2.png" />
+<img alt="Covid Stats Live Dashboard Screenshot 3" src="https://coronastatistics.live/screenshots/sc3.png" />
+<img alt="Covid Stats Live Dashboard Screenshot 4" src="https://coronastatistics.live/screenshots/sc4.png" />
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Build the Angular project
 
-## Running unit tests
+```sh
+npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```sh
+ng build
+```
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Run the Angular Project
 
-## Further help
+```sh
+npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```sh
+ng serve
+```
+
+## Run the Node.js Project (open server folder)
+
+Rename config.example.json to config.json and fill in the details
+
+```
+{
+  "redis": {
+    "host": "host",
+    "password": "1234"
+  },
+  "keys": {
+    "all": "coronastatistics:all",
+    "countries": "coronastatistics:countries",
+    "timeline": "coronastatistics:timeline",
+    "timelineglobal": "coronastatistics:timelineglobal"
+  },
+  "interval": 600000
+}
+```
+
+```sh
+npm install
+```
+
+```sh
+node server.js
+```
+Edit src/app/core/services/getdata.service.ts and replace with your own api url.
+
+```
+  private host = "https://api.coronastatistics.live"
+```
+
+# API Endpoints
+
+* http://api.coronastatistics.live/all
+* http://api.coronastatistics.live/countries
+* http://api.coronastatistics.live/countries?sort={parameter}
+* http://api.coronastatistics.live/countries/{country_name}
+* http://api.coronastatistics.live/timeline
+* http://api.coronastatistics.live/timeline/global
+* http://api.coronastatistics.live/timeline/{country_name}
+
+## Author
+
+👤 **Ossama Rafique**
+
+* Website: https://www.ossamarafique.com
+* Twitter: [@OssamaRafique](https://twitter.com/OssamaRafique)
+* Github: [@OssamaRafique](https://github.com/OssamaRafique)
+* LinkedIn: [@OssamaRafique](https://linkedin.com/in/OssamaRafique)
+* Buy me a Coffee: https://ko-fi.com/ossamarafique
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C0C71IRSG)
