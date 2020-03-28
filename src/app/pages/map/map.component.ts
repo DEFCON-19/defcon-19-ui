@@ -5,7 +5,12 @@ import {
   ViewChild,
   ElementRef
 } from "@angular/core";
-import { latLng, Map, marker, tileLayer } from "leaflet";
+import { data} from "./consData_v2";
+import 'leaflet';
+import 'leaflet.heat/dist/leaflet-heat.js'
+declare let L;
+//import * as L from "leaflet";
+
 // import * as am4core from "@amcharts/amcharts4/core";
 // import * as am4charts from "@amcharts/amcharts4/charts";
 // import * as   am4maps from "@amcharts/amcharts4/maps";
@@ -28,11 +33,30 @@ export class MapComponent implements OnInit {
   }
   ngOnInit() {    
   }
-
+  public dat = [[
+    -37.9075004,
+    175.47452445,
+    "187"
+  ],
+  [
+    -37.90501535,
+    175.4756865333,
+    "111"
+  ],
+  [
+    -37.9068534667,
+    175.4753966333,
+    "180"
+  ],
+  [
+    -37.9029671,
+    175.4766338333,
+    "85"
+  ]];
   get options(){
     return {
     layers: [
-      tileLayer(
+      L.tileLayer(
         "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
         {
           maxZoom: 19,
@@ -42,14 +66,30 @@ export class MapComponent implements OnInit {
       )
     ],
     zoom: 4,
-    center: latLng(65, 19)
+    center: L.latLng(65, 19)
     }
   };
-  mapCenter = latLng(35.679966, 19);
+  mapCenter = L.latLng(35.679966, 19);
 
-  onMapReady(map: Map) {
+  onMapReady(map: L.Map) {
     this.map = map;
+    console.log("==========",this.map)
+    let newAddressPoints = data.map(function (p) { 
+      var a =[p[1], p[2], p[3]] 
+      return a; 
+    });
+    console.log(newAddressPoints);
+    var heat = L.heatLayer(newAddressPoints, {
+      radius: 10,
+      minOpacity :10, 
+      max:3000,
+      blur:10,
+
+    }).addTo(map);
+
+    // const heat = L.heatLayer(newAddressPoints).addTo(this.map);    
   }
   mapOnClick(evt) {
   }
+  
 }
