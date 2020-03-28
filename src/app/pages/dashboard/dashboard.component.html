@@ -45,11 +45,20 @@
               If surfaces are dirty, clean them: Use detergent or soap and water prior to disinfection.
             </p>
           </div>
-          <div class="col-12 text-center" *ngIf="modalStep!=5">
+          <div *ngIf="modalStep == 6" class="modal-step" [@fadeInOutAnimation]>
+            <img src="assets/images/step-5.png" width="125">
+            <h5 class="text-white mt-3">TEST & <span class="text-blue">DISINFECT</span></h5>
+            <p>
+              Clean & disinfect frequently touched surfaces daily. This includes tables, doorknobs, light switches,
+              countertops, handles, desks, phones, keyboards, toilets, faucets, and sinks.
+              If surfaces are dirty, clean them: Use detergent or soap and water prior to disinfection.
+            </p>
+          </div>
+          <div class="col-12 text-center" *ngIf="modalStep!=6">
             <button (click)="nextStep()" class="btn btn-secondary waves-effect waves-light mb-4"><span>Next
               </span><i class="fa fa-arrow-right mr-1"></i></button>
           </div>
-          <div class="col-12 text-center" *ngIf="modalStep==5">
+          <div class="col-12 text-center" *ngIf="modalStep==6">
             <div class="form-group">
               <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="forDontShow" #dontShow>
@@ -64,15 +73,15 @@
     </div>
   </div>
 
-  <div class="col-xl-4" style="margin:0 auto; width:80%">
-    <div class=" card-box text-center">
-      <h5>Outbreak Started</h5>
-      <app-countup></app-countup>
-    </div>
-  </div>
+
   <div class="row">
+
     <div class="col-xl-12">
       <div class="card-box">
+        <div class=" col-xl-3 card-box text-center" style="margin:0 auto;width:80%">
+          <h5>Outbreak Started</h5>
+          <app-countup></app-countup>
+        </div>
         <div class="float-md-right float-right d-md-inline d-none">
           <button type="button" class="btn btn-xs btn-lighten-blue waves-effect waves-light width-xs mr-md-1 mr-0"
             (click)="loadMap('cases');">Cases</button>
@@ -83,9 +92,10 @@
           <button type="button" class="btn btn-xs btn-lighten-warning waves-effect waves-light width-xs"
             (click)="loadMap('critical')">Critical</button>
         </div>
-        <h4 class="header-title mt-0 mb-3 mt-md-0">Worldwide Infections <button type="button"
+        <h4 class="header-title mt-0 mb-3 mt-md-0"> COVID-19 Infections in Norway <span><img
+              src="../../../assets/flags/no.svg" alt="" style="width:20px;height: 20px;"></span><button type="button"
             class="btn btn-xs btn-lighten-secondary waves-effect waves-light width-xs mr-md-1 mr-0"
-            (click)="showModal();">How to prevent?</button></h4>
+            (click)="showModal();" style="margin-left:3%">Introduction</button></h4>
         <div class="fa-3x text-center" [class.d-none]="!false">
           <i class="fas fa-circle-notch fa-spin m-2"></i>
         </div>
@@ -109,7 +119,22 @@
         </div>
       </div>
     </div><!-- end col -->
+    <div class="col-xl-12 col-md-6 col-6">
+      <div class="card-box">
+        <div class="topBoxes">
+          <div class="fa-3x text-center" [class.d-none]="!isLoading">
+            <i class="fas fa-circle-notch fa-spin m-2"></i>
+          </div>
+          <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
+            <div>
+              <app-date-slider></app-date-slider>
+            </div>
+          </div>
 
+        </div>
+      </div>
+
+    </div><!-- end col -->
 
 
   </div>
@@ -129,11 +154,7 @@
               <app-social-distancing-slider></app-social-distancing-slider>
             </div>
           </div>
-          <div class="progress progress-bar-alt-blue progress-sm m-0">
-            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -141,7 +162,7 @@
 
     <div class="col-xl-3 col-md-6 col-6">
       <div class="card-box">
-        <h4 class="header-title m-0 text-md-left text-center">Handwashing per day</h4>
+        <h4 class="header-title m-0 text-md-left text-center">% of population that washes their hands</h4>
 
         <div class="topBoxes">
           <div class="fa-3x text-center" [class.d-none]="!isLoading">
@@ -151,11 +172,6 @@
 
             <app-handwashing-slider></app-handwashing-slider>
           </div>
-          <div class="progress progress-bar-alt-danger progress-sm m-0">
-            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
-          </div>
         </div>
       </div>
 
@@ -163,19 +179,14 @@
 
     <div class="col-xl-3 col-md-6 col-6">
       <div class="card-box">
-        <h4 class="header-title m-0 text-md-left text-center">Wearing masks</h4>
+        <h4 class="header-title m-0 text-md-left text-center">% of people that wear a face mask</h4>
 
         <div class="topBoxes">
           <div class="fa-3x text-center" [class.d-none]="!isLoading">
             <i class="fas fa-circle-notch fa-spin m-2"></i>
           </div>
-          <div style="margin:13%; margin-left:30%">
+          <div>
             <app-wear-masks-radiobutton></app-wear-masks-radiobutton>
-          </div>
-          <div class="progress progress-bar-alt-danger progress-sm m-0">
-            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
           </div>
         </div>
       </div>
@@ -193,11 +204,6 @@
           </div>
           <div style="margin:13%; margin-left:30%">
             <app-air-pollution-radiobutton></app-air-pollution-radiobutton>
-          </div>
-          <div class="progress progress-bar-alt-danger progress-sm m-0">
-            <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
           </div>
         </div>
       </div>
@@ -239,11 +245,6 @@
               <app-population-over65-slider></app-population-over65-slider>
             </div>
           </div>
-          <div class="progress progress-bar-alt-blue progress-sm m-0">
-            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
-          </div>
         </div>
       </div>
 
@@ -261,11 +262,7 @@
               <app-population-smoking-slider></app-population-smoking-slider>
             </div>
           </div>
-          <div class="progress progress-bar-alt-blue progress-sm m-0">
-            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -283,11 +280,7 @@
               <app-population-obese-slider></app-population-obese-slider>
             </div>
           </div>
-          <div class="progress progress-bar-alt-blue progress-sm m-0">
-            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -303,11 +296,6 @@
           <div class="topBoxesDetails text-md-right text-center" [class.d-none]="isLoading">
             <div style="margin:12%">
               <app-hospital-beds-slider></app-hospital-beds-slider>
-            </div>
-          </div>
-          <div class="progress progress-bar-alt-blue progress-sm m-0">
-            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
-              aria-valuemax="100" style="width: 100%;">
             </div>
           </div>
         </div>

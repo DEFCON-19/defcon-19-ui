@@ -7,7 +7,7 @@ import { Options, LabelType } from "ng5-slider";
 })
 export class DateSliderComponent {
   dateRange: Date[] = this.createDateRange();
-  value: number = this.dateRange[0].getTime();
+  value: number = new Date(2020, 3, 10).getTime();
   options: Options = {
     stepsArray: this.dateRange.map((date: Date) => {
       return { value: date.getTime() };
@@ -20,7 +20,7 @@ export class DateSliderComponent {
   createDateRange(): Date[] {
     const dates: Date[] = [];
     for (let i: number = 1; i <= 31; i++) {
-      dates.push(new Date(2018, 5, i));
+      dates.push(new Date(2020, 2, 10));
     }
     return dates;
   }
