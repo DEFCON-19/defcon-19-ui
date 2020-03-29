@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Options, LabelType } from "ng5-slider";
 @Component({
-  selector: "app-handwashing-slider",
-  templateUrl: "./handwashing-slider.component.html",
-  styleUrls: ["./handwashing-slider.component.scss"]
+  selector: "app-wear-masks-slider",
+  templateUrl: "./wear-masks-slider.component.html",
+  styleUrls: ["./wear-masks-slider.component.scss"]
 })
-export class HandwashingSliderComponent implements OnInit {
+export class WearMasksSliderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

@@ -9,11 +9,24 @@ export class HospitalBedsSliderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  value: number = 55;
+  value: number = 39;
   options: Options = {
     floor: 0,
     ceil: 100,
     showTicks: true,
-    tickStep: 10
+    tickStep: 10,
+    showSelectionBar: true,
+    getSelectionBarColor: (value: number): string => {
+      if (value <= 38) {
+        return "red";
+      }
+      if (value <= 60) {
+        return "orange";
+      }
+      if (value <= 80) {
+        return "yellow";
+      }
+      return "#2AE02A";
+    }
   };
 }

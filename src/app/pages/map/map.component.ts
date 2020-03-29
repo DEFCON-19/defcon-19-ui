@@ -26,7 +26,7 @@ declare let L;
 })
 export class MapComponent implements OnInit {
   map = null;
-  mapHeight = 395;
+  mapHeight = 695;
   constructor() {}
   ngOnInit() {}
   public dat = [
@@ -47,7 +47,7 @@ export class MapComponent implements OnInit {
           }
         )
       ],
-      zoom: 4,
+      zoom: 4.4,
       center: L.latLng(65, 19)
     };
   }
@@ -62,10 +62,7 @@ export class MapComponent implements OnInit {
     });
     console.log(newAddressPoints);
     var heat = L.heatLayer(newAddressPoints, {
-      radius: 10,
-      minOpacity: 10,
-      max: 3000,
-      blur: 10
+      radius: 15
     }).addTo(map);
 
     // const heat = L.heatLayer(newAddressPoints).addTo(this.map);

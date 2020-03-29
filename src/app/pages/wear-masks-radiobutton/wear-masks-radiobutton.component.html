@@ -2,10 +2,11 @@
     <label class="btn btn-primary" [(ngModel)]="radioModel" (click)="toggleShow()" btnRadio="Left" tabindex="0"
         role="button">N95</label>
 
-    <label class="btn btn-secondary" [(ngModel)]="radioModel" btnRadio="Right" tabindex="0"
-        role="button">Surgical</label>
+    <label class="btn btn-secondary" [(ngModel)]="radioModel" btnRadio="Right" tabindex="0" role="button"
+        tooltip="Surgical masks do not have any effect in protection against the virus!"
+        placement="top">Surgical</label>
 
 </div>
 <div *ngIf="isShown" style="margin-bottom:10%">
-    <app-handwashing-slider></app-handwashing-slider>
+    <app-wear-masks-slider></app-wear-masks-slider>
 </div>

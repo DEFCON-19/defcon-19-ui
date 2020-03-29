@@ -9,19 +9,17 @@ export class SocialDistancingSliderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  value: number = 5;
+  value: number = 88;
   options: Options = {
-    showTicksValues: true,
-    stepsArray: [
-      { value: 1, legend: "Very poor" },
-      { value: 2 },
-      { value: 3, legend: "Fair" },
-      { value: 4 },
-      { value: 5, legend: "Average" },
-      { value: 6 },
-      { value: 7, legend: "Good" },
-      { value: 8 },
-      { value: 9, legend: "Excellent" }
-    ]
+    floor: 0,
+    ceil: 100,
+    showTicks: true,
+    tickStep: 10,
+    showSelectionBar: true,
+    getSelectionBarColor: (value: number): string => {
+      if (value >= 0) {
+        return "red";
+      }
+    }
   };
 }

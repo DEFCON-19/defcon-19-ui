@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Options } from "ng5-slider";
+import { Options, LabelType } from "ng5-slider";
 @Component({
   selector: "app-population-obese-slider",
   templateUrl: "./population-obese-slider.component.html",
@@ -9,19 +9,34 @@ export class PopulationObeseSliderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  value: number = 5;
+  value: number = 23;
   options: Options = {
-    showTicksValues: true,
-    stepsArray: [
-      { value: 1, legend: "10%" },
-      { value: 2 },
-      { value: 3, legend: "30%" },
-      { value: 4 },
-      { value: 5, legend: "55%" },
-      { value: 6 },
-      { value: 7, legend: "80%" },
-      { value: 8 },
-      { value: 9, legend: "95%" }
-    ]
+    floor: 0,
+    ceil: 100,
+    showTicks: true,
+    tickStep: 10,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return value + "%";
+        case LabelType.High:
+          return value + "%";
+        default:
+          return value + "%";
+      }
+    },
+    showSelectionBar: true,
+    getSelectionBarColor: (value: number): string => {
+      if (value <= 15) {
+        return "yellow";
+      }
+      if (value <= 24) {
+        return "orange";
+      }
+      if (value <= 100) {
+        return "red";
+      }
+      return "#2AE02A";
+    }
   };
 }
