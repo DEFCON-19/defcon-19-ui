@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import {Subject} from 'rxjs';
 
 @Injectable()
 export class SliderDataService {
   value = 0;
-  socialDistanceValue: BehaviorSubject<number>;
+  socialDistanceValue: Subject<number>;
 
   constructor() {
-    this.socialDistanceValue = new BehaviorSubject(88);
+    this.socialDistanceValue = new Subject<number>();
   }
 
   setSocialDistanceValue(value: number) {
