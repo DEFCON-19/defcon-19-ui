@@ -6,8 +6,8 @@ import {
   ElementRef
 } from "@angular/core";
 import { data } from "./consData_v2";
-import "leaflet";
-import "leaflet.heat/dist/leaflet-heat.js";
+import 'leaflet';
+import 'leaflet.heat/dist/leaflet-heat.js'
 declare let L;
 //import * as L from "leaflet";
 
@@ -25,47 +25,61 @@ declare let L;
   styleUrls: ["./map.component.scss"]
 })
 export class MapComponent implements OnInit {
+
   map = null;
-  mapHeight = 695;
-  constructor() {}
-  ngOnInit() {}
-  public dat = [
-    [-37.9075004, 175.47452445, "187"],
-    [-37.90501535, 175.4756865333, "111"],
-    [-37.9068534667, 175.4753966333, "180"],
-    [-37.9029671, 175.4766338333, "85"]
-  ];
+  mapHeight = 900;
+  constructor() {
+
+  }
+  ngOnInit() {
+  }
+
   get options() {
     return {
       layers: [
         L.tileLayer(
           "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
           {
-            maxZoom: 19,
+            maxZoom: 15,
             attribution:
               '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
           }
         )
       ],
-      zoom: 4.4,
+      zoom: 4,
       center: L.latLng(65, 19)
-    };
-  }
+    }
+  };
   mapCenter = L.latLng(35.679966, 19);
 
   onMapReady(map: L.Map) {
     this.map = map;
-    console.log("==========", this.map);
-    let newAddressPoints = data.map(function(p) {
-      var a = [p[1], p[2], p[3]];
+    console.log("==========", this.map)
+    let newAddressPoints = data.map(function (p) {
+      var a = [p[1], p[2], p[0] ]
       return a;
     });
     console.log(newAddressPoints);
-    var heat = L.heatLayer(newAddressPoints, {
-      radius: 15
+       
+    var heat = L.heatLayer(newAddressPoints , { 
+        minOpacity: 0.05,
+        maxZoom: 18,
+        radius: 17,
+        blur: 15,
+        max: 1.0,
+      // radius: 4,
+      // blur:12,
+      // maxZoom:10,
+      // minOpacity: 1,
+      // max:29,
+      gradient:{
+        0.05: 'purple', 0.15: 'orange', 0.5: 'red', 0.65:'yellow',0.9:'white'
+      }
     }).addTo(map);
 
-    // const heat = L.heatLayer(newAddressPoints).addTo(this.map);
+    // const heat = L.heatLayer(newAddressPoints).addTo(this.map);    
   }
-  mapOnClick(evt) {}
+  mapOnClick(evt) {
+  }
+
 }
