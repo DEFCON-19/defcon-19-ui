@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -33,12 +33,14 @@ import { WearMasksRadiobuttonComponent } from "./pages/wear-masks-radiobutton/we
 import { AirPollutionRadiobuttonComponent } from "./pages/air-pollution-radiobutton/air-pollution-radiobutton.component";
 import { PopulationOver65SliderComponent } from "./pages/population-over65-slider/population-over65-slider.component";
 import { FormsModule } from "@angular/forms";
-import { PopulationSmokingSliderComponent } from './pages/population-smoking-slider/population-smoking-slider.component';
-import { PopulationObeseSliderComponent } from './pages/population-obese-slider/population-obese-slider.component';
-import { HospitalBedsSliderComponent } from './pages/hospital-beds-slider/hospital-beds-slider.component';
-
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-
+import { PopulationSmokingSliderComponent } from "./pages/population-smoking-slider/population-smoking-slider.component";
+import { PopulationObeseSliderComponent } from "./pages/population-obese-slider/population-obese-slider.component";
+import { HospitalBedsSliderComponent } from "./pages/hospital-beds-slider/hospital-beds-slider.component";
+import { TooltipModule } from "ngx-bootstrap/tooltip";
+import { LeafletModule } from "@asymmetrik/ngx-leaflet";
+import { TemperatureSliderComponent } from "./pages/temperature-slider/temperature-slider.component";
+import { WearMasksSliderComponent } from "./pages/wear-masks-slider/wear-masks-slider.component";
+import { SliderDataService } from "./services/sliderDataService";
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
 @NgModule({
@@ -61,7 +63,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     PopulationOver65SliderComponent,
     PopulationSmokingSliderComponent,
     PopulationObeseSliderComponent,
-    HospitalBedsSliderComponent
+    HospitalBedsSliderComponent,
+    TemperatureSliderComponent,
+    WearMasksSliderComponent
   ],
   imports: [
     LeafletModule.forRoot(),
@@ -74,6 +78,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     RouterModule,
     PerfectScrollbarModule,
     Ng5SliderModule,
+    TooltipModule.forRoot(),
     ModalModule.forRoot(),
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
@@ -81,6 +86,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     })
   ],
   providers: [
+    SliderDataService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

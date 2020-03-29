@@ -1,14 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output } from "@angular/core";
 import { Options } from "ng5-slider";
+import { SliderDataService } from "src/app/services/sliderDataService";
 @Component({
   selector: "app-social-distancing-slider",
   templateUrl: "./social-distancing-slider.component.html",
   styleUrls: ["./social-distancing-slider.component.scss"]
 })
 export class SocialDistancingSliderComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor(private data: SliderDataService) {}
   value: number = 88;
   options: Options = {
     floor: 0,
@@ -22,4 +21,11 @@ export class SocialDistancingSliderComponent implements OnInit {
       }
     }
   };
+
+  ngOnInit(): void {}
+
+  changeHandler(event) {
+    this.value = event;
+    this.data.setSocialDistanceValue(event);
+  }
 }

@@ -10,55 +10,58 @@
             <h5 class="text-white mt-3">KNOW HOW IT <span class="text-blue">SPREADS</span></h5>
             <h6 class="text-white">There is currently No Vaccine to prevent <span class="text-danger">COVID-19</span>
             </h6>
-            <p>The virus is thought to spread mainly from person-to-person contact
-              through respiratory droplets produced when an infected person coughs or sneezes.</p>
+            <p>After seeing many real-time dashboards presenting COVID-19 statistics all over the news, we were still
+              left with some unanswered questions. How do the measures we are taking impact disease spread and fatality?
+              What can we do to protect ourselves and our communities? Are we doing enough? What can we learn from this
+              situation to be better prepared in the future?</p>
           </div>
           <div *ngIf="modalStep == 2" class="modal-step" [@fadeInOutAnimation]>
             <img src="assets/images/step-2.png" width="125">
             <h5 class="text-white mt-3">TAKE STEPS TO <span class="text-blue">PROTECT YOURSELF</span></h5>
-            <p>Frequently Wash your hands with soap and water for at least 20 seconds. Always Carry a hand sanitizer
-              that contains at least 60% alcohol.
-              Avoid touching your eyes, nose, and mouth with unwashed hands.</p>
+            <p>To answer these questions, we gathered and analyzed data from 201 countries around the world. Looking at
+              demographics, health indicators, infrastructure and protective measures, such as face masks and social
+              distancing, we determined the relationship that each of these factors has with infection rates and deaths.
+              Here, we present a visualization tool based on our calculations. You can adjust each of the parameters to
+              see how they affect the outcomes of COVID-19 for Norway.</p>
           </div>
           <div *ngIf="modalStep == 3" class="modal-step" [@fadeInOutAnimation]>
             <img src="assets/images/step-3.png" width="125">
             <h5 class="text-white mt-3">AVOID <span class="text-blue">CLOSE CONTACT</span></h5>
-            <p>Avoid close contact with people who are sick. Put distance between yourself and other people if
-              COVID-19/Coronavirus is spreading in your community.</p>
+            <p>Our goal for Hack the Crisis Norway is to launch a proof of concept, an informational and educational
+              solution whose main purpose is to save lives. We want users to experience the effect that their choices
+              have on their own and their communities’ health. By playing with the parameters of the model to simulate
+              different scenarios for the COVID-19 outbreak, you can see, for example, exactly how important social
+              distancing is for limiting disease spread. Knowledge is power, and our actions have a big impact in how
+              the crisis plays out! #HacktheCrisisNorway</p>
 
           </div>
           <div *ngIf="modalStep == 4" class="modal-step" [@fadeInOutAnimation]>
             <img src="assets/images/step-4.png" width="125">
             <h5 class="text-white mt-3">TAKE STEPS TO <span class="text-blue">PROTECT YOURSELF</span></h5>
             <p>
-              Cover your mouth and nose with a tissue when you cough or sneeze or use the inside of your elbow.
-              Immediately wash your hands with soap and water for at least 20 seconds or clean your hands with a
-              hand sanitizer that contains at least 60% alcohol.
+              While we are happy with our prototype, we have many plans for the future!
+              In the coming weeks and months, our objective is to facilitate the spread of factual information about the
+              pandemic, empower users to proactively embrace infection control measures, and provide governments with an
+              engaging public health education tool.
+              COVID-19 has opened every government’s eyes to the fact that we are unprepared for crises like these, and
+              citizens are pushing for a more prepared nation. Moreover, technology has reached a point for simulation
+              of scenarios to be viable. As a highly compatible and skilled team that has developed a working prototype
+              (back-end and front-end), we believe we are ideally positioned to become the most reputable player within
+              crisis management software, both in terms of development and consulting.
             </p>
           </div>
           <div *ngIf="modalStep == 5" class="modal-step" [@fadeInOutAnimation]>
             <img src="assets/images/step-5.png" width="125">
-            <h5 class="text-white mt-3">CLEAN & <span class="text-blue">DISINFECT</span></h5>
+            <h5 class="text-white mt-3">ABOUT<span class="text-blue">US</span></h5>
             <p>
-              Clean & disinfect frequently touched surfaces daily. This includes tables, doorknobs, light switches,
-              countertops, handles, desks, phones, keyboards, toilets, faucets, and sinks.
-              If surfaces are dirty, clean them: Use detergent or soap and water prior to disinfection.
+              ABOUT US
             </p>
           </div>
-          <div *ngIf="modalStep == 6" class="modal-step" [@fadeInOutAnimation]>
-            <img src="assets/images/step-5.png" width="125">
-            <h5 class="text-white mt-3">TEST & <span class="text-blue">DISINFECT</span></h5>
-            <p>
-              Clean & disinfect frequently touched surfaces daily. This includes tables, doorknobs, light switches,
-              countertops, handles, desks, phones, keyboards, toilets, faucets, and sinks.
-              If surfaces are dirty, clean them: Use detergent or soap and water prior to disinfection.
-            </p>
-          </div>
-          <div class="col-12 text-center" *ngIf="modalStep!=6">
+          <div class="col-12 text-center" *ngIf="modalStep!=5">
             <button (click)="nextStep()" class="btn btn-secondary waves-effect waves-light mb-4"><span>Next
               </span><i class="fa fa-arrow-right mr-1"></i></button>
           </div>
-          <div class="col-12 text-center" *ngIf="modalStep==6">
+          <div class="col-12 text-center" *ngIf="modalStep==5">
             <div class="form-group">
               <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="forDontShow" #dontShow>

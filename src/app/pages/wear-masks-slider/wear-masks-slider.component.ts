@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { Options, LabelType } from "ng5-slider";
 @Component({
   selector: "app-wear-masks-slider",
@@ -6,6 +6,11 @@ import { Options, LabelType } from "ng5-slider";
   styleUrls: ["./wear-masks-slider.component.scss"]
 })
 export class WearMasksSliderComponent implements OnInit {
+  @Output() sendValue: EventEmitter<number> = new EventEmitter<number>();
+
+  public sendRecord() {
+    this.sendValue.emit(this.value);
+  }
   constructor() {}
 
   ngOnInit(): void {}
