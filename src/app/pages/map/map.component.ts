@@ -4,18 +4,18 @@ import {
   OnInit,
   ViewChild,
   ElementRef
-} from '@angular/core';
-import { data } from './consData_v2';
-import 'leaflet';
-import 'leaflet.heat/dist/leaflet-heat.js';
-import { number } from '@amcharts/amcharts4/core';
-import { SliderDataService } from 'src/app/services/sliderDataService';
+} from "@angular/core";
+import { data } from "./consData_v2";
+import "leaflet";
+import "leaflet.heat/dist/leaflet-heat.js";
+import { number } from "@amcharts/amcharts4/core";
+import { SliderDataService } from "src/app/services/sliderDataService";
 declare let L;
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  selector: "app-map",
+  templateUrl: "./map.component.html",
+  styleUrls: ["./map.component.scss"]
 })
 export class MapComponent implements OnInit {
   constructor(private data: SliderDataService) {}
@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
     return {
       layers: [
         L.tileLayer(
-          'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+          "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
           {
             maxZoom: 15,
             attribution:
@@ -48,13 +48,14 @@ export class MapComponent implements OnInit {
     const newAddressPoints = this.getAddressPoints();
     this.data.socialDistanceValue.asObservable().subscribe(value => {
       this.socialDistanceValue = value;
-      console.log('VALUE ON MAP:', value);
-      console.log('ADDRESS', newAddressPoints);
-
+      console.log("VALUE ON MAP:", value);
+      console.log("ADDRESS", newAddressPoints);
 
       for (let i = 0; i < newAddressPoints.length; i++) {
+        console.log("BEFORE", newAddressPoints[i][2]);
 
-          console.log('AFTER:', newAddressPoints[i][2] * value);
+        console.log("AFTER:", newAddressPoints[i][2] * value);
+        //newAddressPoints[i][2] =* value
       }
 
       const heat = L.heatLayer(newAddressPoints, {
@@ -69,11 +70,11 @@ export class MapComponent implements OnInit {
         // minOpacity: 1,
         // max:29,
         gradient: {
-          0.05: 'purple',
-          0.15: 'orange',
-          0.5: 'red',
-          0.65: 'yellow',
-          0.9: 'white'
+          0.05: "purple",
+          0.15: "orange",
+          0.5: "red",
+          0.65: "yellow",
+          0.9: "white"
         }
       }).addTo(map);
     });
@@ -84,7 +85,11 @@ export class MapComponent implements OnInit {
 
   getAddressPoints() {
     return data.map(function(p) {
-      const a: number[] = [parseFloat(p[1].toString()), parseFloat(p[2].toString()), parseFloat(p[0].toString())];
+      const a: number[] = [
+        parseFloat(p[1].toString()),
+        parseFloat(p[2].toString()),
+        parseFloat(p[0].toString())
+      ];
       return a;
     });
   }
